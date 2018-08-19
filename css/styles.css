@@ -184,10 +184,14 @@ nav h1 a {
   line-height: 1.3;
   margin: 20px 0 10px;
   text-transform: uppercase;
+  text-align: left;
+  padding: 0 0 0 10px;
 }
 #restaurants-list p {
   margin: 0;
   font-size: 4vw;
+  text-align: left;
+  padding: 0 0 0 10px;
 }
 #restaurants-list li a {
   background-color: #3f51b5;
@@ -262,6 +266,12 @@ nav h1 a {
   padding: 30px 20px;
   width: 100%;
 }
+
+#restaurant-container table{
+  width: 100%;
+}
+
+
 #reviews-container {
   padding: 30px 20px;
   width: 100%;
@@ -306,4 +316,64 @@ nav h1 a {
 
 #restaurant-hours td {
   color: #666;
+}
+
+@media screen and (min-width: 400px) {
+  nav h1 a{
+    font-size: 5vw;
+  }
+
+  #restaurants-list li {
+    max-width: 350px;
+  }
+
+  #restaurants-list li h1{
+    font-size: 4vw;
+  }
+
+   #restaurants-list li p {
+     font-size: 3vw;
+   }
+}
+
+@media screen and (min-width: 600px) {
+  nav h1 a {
+    font-size: 4vw;
+  }
+
+  .filter-options {
+    flex-direction: row;
+    height: 80px;
+  }
+
+  #restaurants-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  #restaurants-list li {
+    max-width: 270px;
+  }
+  #restaurants-list li h1 {
+    font-size: 20px;
+  }
+  #restaurants-list li p {
+    font-size: 14px;
+  }
+
+  .inside main {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .inside #map-container {
+    max-width: 50%;
+    position: fixed;
+    height: 700px;
+  }
+
+  .rest-cont {
+    max-width: 50%;
+  }
 }
