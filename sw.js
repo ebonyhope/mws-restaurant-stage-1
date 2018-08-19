@@ -72,19 +72,21 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
     console.log('[ServiceWorker] Fetch', event.request.url);
 
-    if (requestUrl.protocol.startsWith('http')) {
+    if (event.request.destination !== 'image') {
         event.respondWith(
             caches.open(cacheName)
                 .then((cache) => {
-                    return cache.match(event.request, { ignoreSearch: true }).then((response) => {
-                        if (response) {
-                            return response;
-                        }
-
-                        return fetch(event.request).then((networkResponse) => {
-                            cache.put(event.request, networkResponse.clone());
-                            return networkResponse;
-                        })
+                    const url = event.request.url.split('?')[0];
+                    if (url.includes('restaurant')) {
+                        return cache.match(url);
+                    }
+                    return cache.match(event.request).then(cacheResponse => {
+                        return cacheResponse || fetch(event.request).then(networkResponse => {
+                            return caches.open(imagesCacheName).then(cache => {
+                                cache.put(event.request, networkResponse.clone());
+                                return networkResponse;
+                            });
+                        });
                     })
                 })
         );
