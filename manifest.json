@@ -1,0 +1,24 @@
+{
+
+    "author": "Oluwalolope Hope",
+    "background_color": "#ffffff",
+    "description": "Restaurant Review Application",
+    "display": "Standalone",
+    "icons": [
+  
+      {
+        "src": "img/icon.jpg",
+        "sizes": "192x192",
+        "type": "image/png"
+      }
+  
+    ],
+    "manifest_version": 2,
+    "name": "Restaurant Review",
+    "orientation": "portrait",
+    "short_name": "Restaurant Review",
+    "start_url": "http://127.0.0.1:8887/index.html",
+    "theme_color": "#0000fc",
+    "version": "0.1"
+  
+  }
