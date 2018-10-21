@@ -27,47 +27,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
   fetchCuisines();
 });
 
-const dbPromise = idb.open('restaurantsReview', 3, (upgradeDb) => {
-  switch (upgradeDb.oldVersion) {
-      case 0:
-          upgradeDb.createObjectStore('restaurants', { keyPath: 'restaurantsId' });
-
-  }
-});
-
-
-document.addEventListener('DOMContentLoaded', () => {
-
-
-  fetch('http://localhost:1337/restaurants')
-      .then(res => res.json())
-      .then(res => {
-          Object.values(res.results).forEach(restaurant => {
-              dbPromise.then(db => {
-                  const restaurants = db.transaction('restaurants', 'readwrite').objectStore('restaurants');
-                  restaurants.put(restaurant);
-              })
-          });
-          dbPromise.then(db => {
-              const restaurants = db.transaction('restaurants', 'readwrite').objectStore('restaurants');
-              const restaurantsIndex = restaurants.index('restaurants');
-              restaurantsIndex.getAll().then(restaurants => {
-                  // fetchCountries(currencies);
-              })
-          })
-      }
-      ).catch(() => {
-          dbPromise.then(db => {
-              const restaurants = db.transaction('restaurants', 'readwrite').objectStore('restaurants');
-              const restaurantsIndex = restaurants.index('restaurant');
-              restaurantsIndex.getAll().then(restaurants => {
-                  // fetchCountries(currencies);
-              })
-          })
-      });
-});
-
-
 
 /**
  * Fetch all neighborhoods and set their HTML.
