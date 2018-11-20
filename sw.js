@@ -3,7 +3,7 @@ const cacheName = 'v1';
 // Default files to cache
 let cacheFiles = [
     './',
-    './index.html',
+    './Home/Summary',
     './restaurant.html',
     './img/1.jpg',
     './img/2.jpg',
