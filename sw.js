@@ -3,7 +3,7 @@ const cacheName = 'v1';
 // Default files to cache
 let cacheFiles = [
     './',
-    './Home/Summary',
+    './index.html',
     './restaurant.html',
     './img/1.jpg',
     './img/2.jpg',
@@ -20,7 +20,6 @@ let cacheFiles = [
     './js/main.js',
     './js/restaurant_info.js',
     './css/styles.css',
-    './data/restaurants.json',
     'https://unpkg.com/leaflet@1.3.1/dist/leaflet.css',
     'https://unpkg.com/leaflet@1.3.1/dist/leaflet.js',
     'https://unpkg.com/leaflet@1.3.1/dist/images/marker-icon.png',
