@@ -20,6 +20,7 @@ let cacheFiles = [
     './js/main.js',
     './js/restaurant_info.js',
     './css/styles.css',
+    './manifest.json',
     'https://unpkg.com/leaflet@1.3.1/dist/leaflet.css',
     'https://unpkg.com/leaflet@1.3.1/dist/leaflet.js',
     'https://unpkg.com/leaflet@1.3.1/dist/images/marker-icon.png',
