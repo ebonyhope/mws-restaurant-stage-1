@@ -54,6 +54,40 @@
       <section id="reviews-container">
         <ul id="reviews-list"></ul>
       </section>
+      <button id="btn-show-review" class="btn-favorite" style="margin: 0 0 60px 20px;">ADD REVIEW</button>
+
+      <div>
+        <form id="form-review" class="form-review">
+          <h3>ADD A REVIEW</h3>
+          <div class="label">
+            <label for="reviewer_name" class="label">NAME</label>
+          </div>
+          <div class="input">
+            <input type="text" name="reviewer_name" id="reviewer_name" class="input" required/>
+          </div>
+          <div class="label">
+            <label for="ratin" class="label">RATE</label>
+          </div>
+          <fieldset>
+            <span class="star-cb-group input">
+              <input type="radio" id="rating-0" name="rating" value="0" class="star-cb-clear" /><label for="rating-0" class="radio-space">0</label>
+              <input type="radio" id="rating-1" name="rating" value="1" /><label for="rating-1" class="radio-space">1</label>
+              <input type="radio" id="rating-2" name="rating" value="2" /><label for="rating-2" class="radio-space">2</label>
+              <input type="radio" id="rating-3" name="rating" value="3" /><label for="rating-3" class="radio-space">3</label>
+              <input type="radio" id="rating-4" name="rating" value="4" /><label for="rating-4" class="radio-space">4</label>
+              <input type="radio" id="rating-5" name="rating" value="5" checked="checked"  /><label for="rating-5" class="radio-space">5</label>
+            </span>
+          </fieldset>
+          <div class="label">
+            <label for="comment_text" class="label">COMMENTS</label>
+          </div>
+          <div class="textarea">
+            <textarea name="comment_text" class="input" id="comment_text" required></textarea> 
+          </div>
+          <button id="btn-submit-review" class="btn-favorite">ADD</button><div class="loader"></div>
+        </form>
+      </div>
+    <!-- End form reviews -->
     </section>
     <!-- End reviews -->
   </main>

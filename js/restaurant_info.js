@@ -142,26 +142,32 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
   }
 }
 
-/**
- * Create all reviews HTML and add them to the webpage.
+/* Create all reviews HTML and add them to the webpage.
  */
-fillReviewsHTML = (reviews = self.restaurant.reviews) => {
+fillReviewsHTML = () => {
+  const restaurant_id = getParameterByName('id');
   const container = document.getElementById('reviews-container');
-  const title = document.createElement('h2');
+  const title = document.createElement('h3');
   title.innerHTML = 'Reviews';
   container.appendChild(title);
 
-  if (!reviews) {
-    const noReviews = document.createElement('p');
-    noReviews.innerHTML = 'No reviews yet!';
+
+  DBHelper.fetchReviews(restaurant_id);
+}
+
+/**
+ * Create new review HTML and add it to others reviews in the page.
+ */
+fillReviewHTML = (review) => {
+  const container = document.getElementById('reviews-container');
+  if (!review) {
     container.appendChild(noReviews);
     return;
   }
   const ul = document.getElementById('reviews-list');
-  reviews.forEach(review => {
-    ul.appendChild(createReviewHTML(review));
-  });
+  ul.appendChild(createReviewHTML(review));
   container.appendChild(ul);
+
 }
 
 /**

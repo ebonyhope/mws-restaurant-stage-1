@@ -418,6 +418,43 @@ class DBHelper {
   }
   
   
+  static fetchReviews(id) {
+    //try to fetch data to the local storage before going to the network
+    const query = "http://localhost:1337/reviews/?restaurant_id="+id;
+    var dbPromise = DBHelper.idbStorage();
+    fetch(query).then((resp) => { 
+          return resp.json();
+        }).then((reviewsList) => {
+          console.log(reviewsList);
+          const dbPromise = DBHelper.idbStorage();
+          dbPromise.then((db) => {
+          const tx = db.transaction('list-reviews', 'readwrite');
+          const reviewsStorage = tx.objectStore('list-reviews');
+            reviewsList.forEach((review) => {
+              console.log(review)
+              reviewsStorage.put(review, review.id);
+              fillReviewHTML(review);
+            });
+            return tx.complete; 
+          });
+      }).catch((error) => {
+        dbPromise.then((db) => {
+        const tx = db.transaction('list-reviews');
+        const reviewsStorage = tx.objectStore('list-reviews');
+        const restaurantIndex = reviewsStorage.index('restaurant-reviews')
+          return restaurantIndex.getAll(id);
+        }).then((data_reviews) => {
+            //if there is no data store, fetch from the local server
+            data_reviews.forEach((review) => {
+              fillReviewHTML(review);
+            });
+        }).catch((error) => {
+          console.log(error);
+          
+        });
+      });
+  }
+  
   
   
   

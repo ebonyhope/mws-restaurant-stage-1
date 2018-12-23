@@ -16,21 +16,57 @@ document.getElementById('btn-favorite').addEventListener('click', (event) => {
     
 });
 
+//show the form to add a new review
+document.getElementById('btn-show-review').addEventListener('click', () => {
+    document.getElementById('form-review').style.display = "block";    
+});
 
 //handle the event that will post the a new review on the server 
-/*document.getElementById('btn-submit').addEventListener('click', (event) => {
+document.getElementById('btn-submit-review').addEventListener('click', (event) => {
     event.preventDefault();
-    addReview(event);
+
+    let name = document.getElementsByName('reviewer_name')[0].value;
+    let comments = document.getElementsByName('comment_text')[0].value;
+    let rating = "";
+
+    const radios = document.getElementsByName('rating');
+    for (var i = 0, length = radios.length; i < length; i++) {
+        if (radios[i].checked) {
+            rating = radios[i].value;
+            break;
+        }
+    }
+
+
+    if((name == "") || (rating == "") || (comments == "")){
+        alert("please fill all fields");
+        return;
+    }
+
+    review = {};
+    review.restaurant_id = document.getElementById('restaurant-id').innerHTML;
+    review.name = name;
+    review.rating = rating;
+    review.comments = comments;
+
+    console.log(review);
+    DBHelper.addNewReview(review);
+
     setTimeout(function(){ 
-      document.querySelector('.message').style.display = "block"; 
-      document.querySelector('.message').classList.toggle('success-message'); 
+      alert("Review successfully added")
     }, 200);
+
+    fillReviewHTML(review);
+    document.getElementById('form-review').reset();
+    document.getElementById('form-review').style.display = "none";
     console.log('end event');
+
+
 });
 
 
 //show map carte
-document.getElementById('btn-display-map').addEventListener('click', () => {
+/*document.getElementById('btn-display-map').addEventListener('click', () => {
     document.getElementById("btn-display-map").style.display = "none";
     document.getElementById("btn-hide-map").style.display = "block";
     document.getElementById("map-container").style.display = "block";
@@ -63,21 +99,7 @@ document.getElementById('btn-hide-map').addEventListener('click', () => {
     document.getElementById("map-container").style.display = "none";   
 });
 
-//show the form to add a new review
-document.getElementById('btn-display-form').addEventListener('click', () => {
-    document.getElementById("form-reviews").style.display = "block"; 
-    document.querySelector(".form-reviews").classList.toggle("card");
-    document.getElementById("btn-hide-form").style.display = "block";
-    document.getElementById("btn-display-form").style.display = "none";   
-});
 
-//hide the form 
-document.getElementById('btn-hide-form').addEventListener('click', () => {
-    document.getElementById("form-reviews").style.display = "none"; 
-    document.querySelector(".form-reviews").classList.remove("card"); 
-    document.getElementById("btn-hide-form").style.display = "none";
-    document.getElementById("btn-display-form").style.display = "block";  
-});
 
 //show reviews list
 document.getElementById('btn-display-reviews-list').addEventListener('click', () => {
