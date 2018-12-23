@@ -21,8 +21,9 @@
     "manifest_version": 2,
     "name": "Restaurant Review",
     "orientation": "portrait",
-    "short_name": "Restaurants",
+    "short_name": "RESTR",
     "start_url": "/",
+    "Scope": "/",
     "theme_color": "#3f51b5",
     "version": "1.0"
   
